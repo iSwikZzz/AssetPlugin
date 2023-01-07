@@ -1,0 +1,5 @@
+name: Atouts
+version: '${project.version}'
+main: me.iswikzzz.atouts.Atouts
+commands:
+  atouts:
