@@ -1,0 +1,27 @@
+on-message: "§aAsset activate"
+off-message: "§4Asset disable"
+fire:
+  slot: 11
+  name: "§eFire resistance"
+  material: MAGMA_CREAM
+
+speed:
+  slot: 12
+  name: "§bSpeed"
+  material: SUGAR
+
+strenght:
+  slot: 13
+  name: "§4Strenght"
+  material: BLAZE_POWDER
+
+nofall:
+  slot: 14
+  name: "§fNoFall"
+  material: FEATHER
+
+nodebuff:
+  slot: 15
+  name: "§5NoDebuff"
+  material: SPIDER_EYE
+

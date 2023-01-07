@@ -20,11 +20,11 @@ public class AssetGui extends FastInv {
         super(27, ChatColor.RED + "Atouts");
 
         setItems(getBorders(), new ItemBuilder(Material.STAINED_GLASS_PANE).data(14).name(" ").build());
-        setItem(11, new ItemBuilder(Material.MAGMA_CREAM).name(ChatColor.YELLOW + "Fire resistance").addLore("Turn on or off the asset").build());
-        setItem(12, new ItemBuilder(Material.SUGAR).name(ChatColor.AQUA + "Speed").addLore("Turn on or off the asset").build());
-        setItem(13, new ItemBuilder(Material.BLAZE_POWDER).name(ChatColor.RED + "Strenght").addLore("Turn on or off the asset").build());
-        setItem(14, new ItemBuilder(Material.FEATHER).name(ChatColor.WHITE + "NoFall").addLore("Turn on or off the asset").build());
-        setItem(15, new ItemBuilder(Material.SPIDER_EYE).name(ChatColor.LIGHT_PURPLE + "NoDebuff").addLore("Turn on or off the asset").build());
+        setItem(plugin.getConfig().getInt("fire.slot"), new ItemBuilder(Material.getMaterial(plugin.getConfig().getString("fire.material"))).name(plugin.getConfig().getString("fire.name")).addLore("Turn on or off the asset").build());
+        setItem(plugin.getConfig().getInt("speed.slot"), new ItemBuilder(Material.getMaterial(plugin.getConfig().getString("speed.material"))).name(plugin.getConfig().getString("speed.name")).addLore("Turn on or off the asset").build());
+        setItem(plugin.getConfig().getInt("strenght.slot"), new ItemBuilder(Material.getMaterial(plugin.getConfig().getString("strenght.material"))).name(plugin.getConfig().getString("strenght.name")).addLore("Turn on or off the asset").build());
+        setItem(plugin.getConfig().getInt("nofall.slot"), new ItemBuilder(Material.getMaterial(plugin.getConfig().getString("nofall.material"))).name(plugin.getConfig().getString("nofall.name")).addLore("Turn on or off the asset").build());
+        setItem(plugin.getConfig().getInt("nodebuff.slot"), new ItemBuilder(Material.getMaterial(plugin.getConfig().getString("nodebuff.material"))).name(plugin.getConfig().getString("nodebuff.name")).addLore("Turn on or off the asset").build());
 
 
     }
@@ -37,14 +37,15 @@ public class AssetGui extends FastInv {
 
         switch (e.getCurrentItem().getType()) {
             case MAGMA_CREAM:
+                ;
                 if (player.hasPermission("asset.fire")) {
                     if (player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE)) {
                         player.removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
-                        player.sendMessage("Asset disable");
+                        player.sendMessage(plugin.getConfig().getString("off-message"));
                         player.closeInventory();
                     } else {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 0));
-                        player.sendMessage("Asset enable");
+                        player.sendMessage(plugin.getConfig().getString("on-message"));
                         player.closeInventory();
                     }
                 }
@@ -53,11 +54,11 @@ public class AssetGui extends FastInv {
                 if (player.hasPermission("asset.speed")) {
                     if (player.hasPotionEffect(PotionEffectType.SPEED)) {
                         player.removePotionEffect(PotionEffectType.SPEED);
-                        player.sendMessage("Asset disable");
+                        player.sendMessage(plugin.getConfig().getString("off-message"));
                         player.closeInventory();
                     } else {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
-                        player.sendMessage("Asset enable");
+                        player.sendMessage(plugin.getConfig().getString("on-message"));
                         player.closeInventory();
                     }
                 }
@@ -66,11 +67,11 @@ public class AssetGui extends FastInv {
                 if (player.hasPermission("asset.strenght")) {
                     if (player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) {
                         player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-                        player.sendMessage("Asset disable");
+                        player.sendMessage(plugin.getConfig().getString("off-message"));
                         player.closeInventory();
                     } else {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
-                        player.sendMessage("Asset enable");
+                        player.sendMessage(plugin.getConfig().getString("on-message"));
                         player.closeInventory();
                     }
                 }
@@ -78,11 +79,11 @@ public class AssetGui extends FastInv {
             case FEATHER:
                if (player.hasPermission("asset.nofall")) {
                    if (plugin.getNoFallList().contains(player.getUniqueId())) {
-                       player.sendMessage("Asset disable");
+                       player.sendMessage(plugin.getConfig().getString("off-message"));
                        plugin.getNoFallList().remove(player.getUniqueId());
                        player.closeInventory();
                    } else {
-                       player.sendMessage("Asset enable");
+                       player.sendMessage(plugin.getConfig().getString("on-message"));
                        plugin.getNoFallList().add(player.getUniqueId());
                        player.closeInventory();
                    }
@@ -92,12 +93,12 @@ public class AssetGui extends FastInv {
             case SPIDER_EYE:
                 if(player.hasPermission("asset.nodebuff")){
                     if(plugin.getNoDebuffList().contains(player.getUniqueId())){
-                        player.sendMessage("Asset disable");
+                        player.sendMessage(plugin.getConfig().getString("off-message"));
                         plugin.getNoDebuffList().remove(player.getUniqueId());
                         player.closeInventory();
 
                     }else {
-                        player.sendMessage("Asset enable");
+                        player.sendMessage(plugin.getConfig().getString("on-message"));
                         plugin.getNoDebuffList().add(player.getUniqueId());
                         player.closeInventory();
                     }

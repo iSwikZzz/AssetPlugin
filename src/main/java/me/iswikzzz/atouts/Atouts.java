@@ -15,6 +15,7 @@ import java.util.UUID;
 
 public final class Atouts extends JavaPlugin {
 
+
     private final ArrayList<UUID> noFallList = new ArrayList<>();
     private final ArrayList<UUID> noDebuffList = new ArrayList<>();
     private final List<String> bannedPotions  = new ArrayList<>(Arrays.asList("POISON","SLOW","WEAKNESS"));
@@ -40,5 +41,9 @@ public final class Atouts extends JavaPlugin {
         return bannedPotions;
     }
 
-}
+
+
+    }
+
+
 
